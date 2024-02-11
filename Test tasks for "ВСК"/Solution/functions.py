@@ -1,50 +1,49 @@
 import numpy as np
+from colorama import Fore, Style
 
 def EDA(name_df):
     
-    print('Shape DataFrame:')
-    print(name_df.shape,'\n')
+    print(Fore.CYAN + 'Shape DataFrame:')
+    print(Style.RESET_ALL)
+    print(name_df.shape, '\n')
 
-    print('Basic information:')
+    print(Fore.CYAN + 'Basic information:')
+    print(Style.RESET_ALL)
     name_df.info()
+    print('\n')
     
-    print('Find the duplicates:')
-    print(name_df.duplicated().sum(),'\n')
+    print(Fore.CYAN + 'Find the duplicates:')
+    print(Style.RESET_ALL)
+    print(name_df.duplicated().sum(), '\n')
     
-    print('Datatypes:')
-    print(name_df.dtypes,'\n')
+    print(Fore.CYAN + 'Datatypes:')
+    print(Style.RESET_ALL)
+    print(name_df.dtypes, '\n')
     
-    print('Number of unique values in each column:')
+    print(Fore.CYAN + 'Number of unique values in each column:')
+    print(Style.RESET_ALL)
     for column in name_df.columns:
       print(column, name_df[column].nunique())
-    
-    print('Number of null values:')
-    print(name_df.isnull().sum(),'\n')
+    print('\n')
 
-    print('Сount, unique, top, freq:')
-    print(name_df.isnull().any().describe(),'\n')
+    print(Fore.CYAN + 'Number of null values:')
+    print(Style.RESET_ALL)
+    print(name_df.isnull().sum(), '\n')
 
-    print('Categorical data:')
+    print(Fore.CYAN + 'Сount, unique, top, freq:')
+    print(Style.RESET_ALL)
+    print(name_df.isnull().any().describe(), '\n')
+
+    print(Fore.CYAN + 'Categorical data:')
+    print(Style.RESET_ALL)
     cat = name_df.select_dtypes(include = object)
     cat_columns = cat.columns
     cat_features = list(cat_columns) 
-    print(cat_features,'\n')
-
-    for feature in cat_features:
-      print('The feature is {} and number of categories are {}'.format(feature,\
-      len(name_df[feature].unique())))
+    print(cat_features, '\n')
     
-    print('Numerical data:')
+    print(Fore.CYAN + 'Numerical data:')
+    print(Style.RESET_ALL)
     numeric = name_df.select_dtypes(include = np.number)
     numeric_columns= numeric.columns
     numeric_features = list(numeric_columns) 
-    print(numeric_features,'\n')
-
-    for feature in numeric_features:
-      print('The feature is {} and number of categories are {}'.format(feature,\
-      len(name_df[feature].unique())))
-    print()
-
-    for feature in numeric_features: 
-      print("The counts of the catagorical values in the '{}' feature:\n".format(feature.title()))
-      print(name_df[feature].value_counts().sort_index(),'\n')
+    print(numeric_features, '\n')
